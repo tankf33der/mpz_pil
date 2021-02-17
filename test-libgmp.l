@@ -1,5 +1,6 @@
 (load "libgmp.l")
 
+
 # # 5.1 Initialization Functions
 # (de mpz_create NIL
 # (de mpz_init (P)
@@ -14,6 +15,7 @@
    (mpz_clear B)
    (%@ "free" NIL A)
    (%@ "free" NIL B) )
+
 
 # # 5.2 Assignment Functions
 # (de mpz_set (A B)
@@ -49,6 +51,7 @@
    (%@ "free" NIL B)
    (%@ "free" NIL C) )
 
+
 # # 5.3 Combined Initialization and Assignment Functions
 # (de mpz_init_set (A B)
 # (de mpz_init_set_ui (A B)
@@ -78,6 +81,7 @@
    (%@ "free" NIL B)
    (%@ "free" NIL C) )
 
+
 # # 5.4 Conversion Functions
 # (de mpz_get_ui (A)
 # (de mpz_get_si (A)
@@ -92,6 +96,7 @@
    (mpz_clear B)
    (%@ "free" NIL A)
    (%@ "free" NIL B) )
+
 
 # # 5.5 Arithmetic Functions
 # (de mpz_add (A B C)
@@ -161,6 +166,7 @@
    (%@ "free" NIL A)
    (%@ "free" NIL B)
    (%@ "free" NIL C) )
+
 
 # # 5.6 Division Functions
 # # CDIV
@@ -337,11 +343,202 @@
    (mpz_clear A)
    (mpz_clear B)
    (mpz_clear C)
+   (mpz_clear D)
    (%@ "free" NIL A)
    (%@ "free" NIL B)
-   (%@ "free" NIL C) )
+   (%@ "free" NIL C)
+   (%@ "free" NIL D) )
 
 
+# # 5.7 Exponentiation Functions
+# (de mpz_powm (A B C D)
+# (de mpz_powm_ui (A B C D)
+# (de mpz_powm_sec (A B C D)
+# (de mpz_pow_ui (A B C)
+# (de mpz_ui_pow_ui (A B C)
+(let (A (mpz_create)  B (mpz_create)  C (mpz_create)  D (mpz_create))
+   (mpz_init A)
+   (mpz_init B)
+   (mpz_init C)
+   (mpz_init D)
+
+   (mpz_set_ui A 344)
+   (mpz_set_ui B 34)
+   (mpz_set_ui C 3411)
+   (mpz_powm D A B C)
+   (test "1735" (mpz_get_str D))
+   (mpz_powm_ui D A 234 C)
+   (test "595" (mpz_get_str D))
+   (mpz_powm_sec D A B C)
+   (test "1735" (mpz_get_str D))
+
+   (mpz_pow_ui D A 3)
+   (test "40707584" (mpz_get_str D))
+   (mpz_ui_pow_ui D 344 3)
+   (test "40707584" (mpz_get_str D))
+
+   (mpz_clear A)
+   (mpz_clear B)
+   (mpz_clear C)
+   (mpz_clear D)
+   (%@ "free" NIL A)
+   (%@ "free" NIL B)
+   (%@ "free" NIL C)
+   (%@ "free" NIL D) )
+
+
+# # 5.8 Root Extraction Functions
+# (de mpz_root (A B C)
+# (de mpz_rootrem (A B C D)
+# (de mpz_sqrt (A B)
+# (de mpz_sqrtrem (A B C)
+# (de mpz_perfect_power_p (A)
+# (de mpz_perfect_square_p (A)
+(let (A (mpz_create)  B (mpz_create)  C (mpz_create)  D (mpz_create))
+   (mpz_init A)
+   (mpz_init B)
+   (mpz_init C)
+   (mpz_init D)
+
+   (mpz_set_ui A 344)
+   (mpz_set_ui B 44)
+   (mpz_root D A 3)
+   (test "7" (mpz_get_str D))
+   (mpz_rootrem D A B 3)
+   (test "3" (mpz_get_str D))
+
+   (mpz_sqrt D A)
+   (test "4" (mpz_get_str D))
+   (mpz_sqrtrem D A B)
+   (test "6" (mpz_get_str D))
+
+   (test 1 (mpz_perfect_power_p A))
+   (test 0 (mpz_perfect_square_p A))
+
+   (mpz_clear A)
+   (mpz_clear B)
+   (mpz_clear C)
+   (mpz_clear D)
+   (%@ "free" NIL A)
+   (%@ "free" NIL B)
+   (%@ "free" NIL C)
+   (%@ "free" NIL D) )
+
+
+# # 5.9 Number Theoretic Functions
+# (de mpz_probab_prime_p (A B) # B is int
+# (de mpz_nextprime (A B)
+# (de mpz_gcd (A B C)
+# (de mpz_gcd_ui (A B C) # C is uint
+# (de mpz_gcdext (A B C D E)
+# (de mpz_lcm (A B C)
+# (de mpz_lcm_ui (A B C) # C is ulong
+(let (A (mpz_create)  B (mpz_create)  C (mpz_create)  D (mpz_create))
+   (mpz_init A)
+   (mpz_init B)
+   (mpz_init C)
+   (mpz_init D)
+
+   (mpz_set_str A "34409834908340934809348098340983409348093480934809348093489")
+   (test 0 (mpz_probab_prime_p A 32))
+   (mpz_nextprime B A)
+   (test 1 (mpz_probab_prime_p B 32))
+
+   (mpz_set_ui A 978)
+   (mpz_set_str B "89798763754892653453379597352537489494736")
+   (mpz_gcd D A B)
+   (test "6" (mpz_get_str D))
+
+   (mpz_set_ui A 123455)
+   (mpz_set_ui B 3111)
+   (mpz_lcm D A B)
+   (test "384068505" (mpz_get_str D))
+
+   (mpz_clear A)
+   (mpz_clear B)
+   (mpz_clear C)
+   (mpz_clear D)
+   (%@ "free" NIL A)
+   (%@ "free" NIL B)
+   (%@ "free" NIL C)
+   (%@ "free" NIL D) )
+
+
+# # 5.10 Comparison Functions
+# (de mpz_cmp (A B)
+# (de mpz_cmp_si (A B)
+# (de mpz_cmp_ui (A B)
+# (de mpz_cmpabs (A B)
+# (de mpz_cmpabs_ui (A B) # B is ulong
+(let (A (mpz_create)  B (mpz_create)  C (mpz_create)  D (mpz_create))
+   (mpz_init A)
+   (mpz_init B)
+   (mpz_init C)
+   (mpz_init D)
+
+   (mpz_set_ui A 1234)
+   (mpz_set_ui B 123)
+   (test 0 (mpz_cmp A A))
+   (test 1 (mpz_cmp A B))
+   (test -1 (mpz_cmp B A))
+   (test 0 (mpz_cmp_si A 1234))
+   (test 1 (mpz_cmp_si A 1233))
+   (test -1 (mpz_cmp_si B 124))
+   (test 0 (mpz_cmp_ui A 1234))
+   (test 1 (mpz_cmp_ui A 1233))
+   (test -1 (mpz_cmp_ui B 124))
+
+   (mpz_set_si A 123)
+   (mpz_set_si B -123)
+   (test 0 (mpz_cmpabs A B))
+
+   (mpz_clear A)
+   (mpz_clear B)
+   (mpz_clear C)
+   (mpz_clear D)
+   (%@ "free" NIL A)
+   (%@ "free" NIL B)
+   (%@ "free" NIL C)
+   (%@ "free" NIL D) )
+
+
+# # 5.11 Logical and Bit Manipulation Functions
+# (de mpz_and (A B C)
+# (de mpz_ior (A B C)
+# (de mpz_xor (A B C)
+# (de mpz_com (A B)
+# (de mpz_popcount (A)
+# (de mpz_hamdist (A B)
+# (de mpz_scan0 (A B) # B is mp_bitcnt_t
+# (de mpz_scan1 (A B) # B is mp_bitcnt_t
+# (de mpz_setbit (A B) # B is mp_bitcnt_t
+# (de mpz_clrbit (A B) # B is mp_bitcnt_t
+# (de mpz_combit (A B) # B is mp_bitcnt_t
+# (de mpz_tstbit (A B) # B is mp_bitcnt_t
+(let (A (mpz_create)  B (mpz_create)  C (mpz_create)  D (mpz_create))
+   (mpz_init A)
+   (mpz_init B)
+   (mpz_init C)
+   (mpz_init D)
+
+   (mpz_set_ui A 1234)
+   (mpz_set_ui B 123)
+
+   (mpz_and D A B)
+   (test "82" (mpz_get_str D))
+   (mpz_ior D A B)
+   (test "1275" (mpz_get_str D))
+   (mpz_xor D A B)
+   (test "1193" (mpz_get_str D))
+
+   (mpz_clear A)
+   (mpz_clear B)
+   (mpz_clear C)
+   (mpz_clear D)
+   (%@ "free" NIL A)
+   (%@ "free" NIL B)
+   (%@ "free" NIL C)
+   (%@ "free" NIL D) )
 
 (msg 'All-ok)
 (bye)
