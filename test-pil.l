@@ -21,13 +21,13 @@
    (fromtwo
       (F (totwo N1) (totwo N2)) ) )
 # main
-(setq Start 32  End 32000)
+(setq Start 32  End 3200)
 (let (A (mpz_create)  B (mpz_create)  Z (mpz_create))
    (mpz_init A)
    (mpz_init B)
    (mpz_init Z)
-   (do 1000000
-      (at (0 . 10000) (prin ".") (flush))
+   (do 1000
+      (at (0 . 100) (prin ".") (flush))
       (let
          (X1 (randL (rand Start End) T)
             X2 (randL (rand Start End) T)
@@ -47,8 +47,13 @@
          (test (/ Y1 Y2) (format (mpz_get_str Z)))
          (mpz_mod Z A B)
          (test (pil_mod Y1 Y2) (format (mpz_get_str Z)))
-         (test (pil_cmp Y1 Y2) (mpz_cmp A B))
-
+         # (test (pil_cmp Y1 Y2) (mpz_cmp A B))
+         (let (P (pil_cmp Y1 Y2)  G (mpz_cmp A B))
+            (cond
+               ((and (gt0 P) (gt0 G)))
+               ((and (lt0 P) (lt0 G)))
+               ((and (=0 P) (=0 G)))
+               (T (quit "Comparison failed")) ) )
          # Positives only
          (setq
             X1 (randL (rand Start End))
