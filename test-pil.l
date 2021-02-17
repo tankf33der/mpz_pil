@@ -21,13 +21,13 @@
    (fromtwo
       (F (totwo N1) (totwo N2)) ) )
 # main
-(setq Start 32  End 3200)
+(setq Start 16  End 1600)
 (let (A (mpz_create)  B (mpz_create)  Z (mpz_create))
    (mpz_init A)
    (mpz_init B)
    (mpz_init Z)
    (do 1000
-      (at (0 . 100) (prin ".") (flush))
+      (at (0 . 1000) (prin ".") (flush))
       (let
          (X1 (randL (rand Start End) T)
             X2 (randL (rand Start End) T)
