@@ -199,6 +199,31 @@
 (de mpz_cmpabs_ui (A B) # B is ulong
    (native "libgmp.so" "__gmpz_cmpabs_ui" 'I A B) )
 # 5.11 Logical and Bit Manipulation Functions
+(de mpz_and (A B C)
+   (native "libgmp.so" "__gmpz_and" NIL A B C) )
+(de mpz_ior (A B C)
+   (native "libgmp.so" "__gmpz_ior" NIL A B C) )
+(de mpz_xor (A B C)
+   (native "libgmp.so" "__gmpz_xor" NIL A B C) )
+(de mpz_com (A B)
+   (native "libgmp.so" "__gmpz_com" NIL A B) )
+(de mpz_popcount (A)
+   (native "libgmp.so" "__gmpz_popcount" 'P A) )
+(de mpz_hamdist (A B)
+   (native "libgmp.so" "__gmpz_hamdist" 'P A B) )
+(de mpz_scan0 (A B) # B is mp_bitcnt_t
+   (native "libgmp.so" "__gmpz_scan0" 'P A B) )
+(de mpz_scan1 (A B) # B is mp_bitcnt_t
+   (native "libgmp.so" "__gmpz_scan1" 'P A B) )
+(de mpz_setbit (A B) # B is mp_bitcnt_t
+   (native "libgmp.so" "__gmpz_setbit" NIL A B) )
+(de mpz_clrbit (A B) # B is mp_bitcnt_t
+   (native "libgmp.so" "__gmpz_clrbit" NIL A B) )
+(de mpz_combit (A B) # B is mp_bitcnt_t
+   (native "libgmp.so" "__gmpz_combit" NIL A B) )
+(de mpz_tstbit (A B) # B is mp_bitcnt_t
+   (native "libgmp.so" "__gmpz_tstbit" 'I A B) )
+# 5.12 - 5.16 chapters skipped.
 
 
 
