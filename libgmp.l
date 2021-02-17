@@ -86,7 +86,7 @@
    (native "libgmp.so" "__gmpz_cdiv_ui" 'P A B) )
 (de mpz_cdiv_q_2exp (A B C) # C is mp_bitcnt_t
    (native "libgmp.so" "__gmpz_cdiv_q_2exp" NIL A B C) )
-(de mpz_cdiv_r_2exp (A B C) C is mp_bitcnt_t
+(de mpz_cdiv_r_2exp (A B C) # C is mp_bitcnt_t
    (native "libgmp.so" "__gmpz_cdiv_r_2exp" NIL A B C) )
 # FDIV
 (de mpz_fdiv_q (A B C)
@@ -139,7 +139,7 @@
    (native "libgmp.so" "__gmpz_divisible_p" 'I A B) )
 (de mpz_divisible_ui_p (A B)
    (native "libgmp.so" "__gmpz_divisible_ui_p" 'I A B) )
-(de mpz_divisible_2exp_p (A B) # C is mp_bitcnt_t
+(de mpz_divisible_2exp_p (A B) # B is mp_bitcnt_t
    (native "libgmp.so" "__gmpz_divisible_2exp_p" 'I A B) )
 # CONGRUENT
 (de mpz_congruent_p (A B C)
@@ -224,36 +224,3 @@
 (de mpz_tstbit (A B) # B is mp_bitcnt_t
    (native "libgmp.so" "__gmpz_tstbit" 'I A B) )
 # 5.12 - 5.16 chapters skipped.
-
-
-
-
-
-
-
-
-(let (A (mpz_create)  B (mpz_create)  C (mpz_create)  D (mpz_create))
-   (mpz_init A)
-   (mpz_init B)
-   (mpz_init C)
-   (mpz_init D)
-   (mpz_set_str C "1234")
-   (mpz_set_str D "-5")
-
-   (mpz_cdiv_q B C D) # 247
-   (println (mpz_get_str B))
-   (mpz_cdiv_r B C D)
-   (println (mpz_get_str B))
-
-   # (mpz_cdiv_qr A B C D)
-   # (println (mpz_get_str A))
-   # (println (mpz_get_str B))
-#
-   # (mpz_fdiv_qr A B C D)
-   # (println (mpz_get_str A))
-   # (println (mpz_get_str B))
-
-)
-
-(msg 'ok)
-(bye)
