@@ -69,18 +69,165 @@
 (de mpz_abs (A B)
    (native "libgmp.so" "__gmpz_abs" NIL A B) )
 # 5.6 Division Functions
+# CDIV
+(de mpz_cdiv_q (A B C)
+   (native "libgmp.so" "__gmpz_cdiv_q" NIL A B C) )
+(de mpz_cdiv_r (A B C)
+   (native "libgmp.so" "__gmpz_cdiv_r" NIL A B C) )
+(de mpz_cdiv_qr (A B C D)
+   (native "libgmp.so" "__gmpz_cdiv_qr" NIL A B C D) )
+(de mpz_cdiv_q_ui (A B C)
+   (native "libgmp.so" "__gmpz_cdiv_q_ui" 'P A B C) )
+(de mpz_cdiv_r_ui (A B C)
+   (native "libgmp.so" "__gmpz_cdiv_r_ui" 'P A B C) )
+(de mpz_cdiv_qr_ui (A B C D)
+   (native "libgmp.so" "__gmpz_cdiv_qr_ui" 'P A B C D) )
+(de mpz_cdiv_ui (A B)
+   (native "libgmp.so" "__gmpz_cdiv_ui" 'P A B) )
+(de mpz_cdiv_q_2exp (A B C) # C is mp_bitcnt_t
+   (native "libgmp.so" "__gmpz_cdiv_q_2exp" NIL A B C) )
+(de mpz_cdiv_r_2exp (A B C) C is mp_bitcnt_t
+   (native "libgmp.so" "__gmpz_cdiv_r_2exp" NIL A B C) )
+# FDIV
+(de mpz_fdiv_q (A B C)
+   (native "libgmp.so" "__gmpz_fdiv_q" NIL A B C) )
+(de mpz_fdiv_r (A B C)
+   (native "libgmp.so" "__gmpz_fdiv_r" NIL A B C) )
+(de mpz_fdiv_qr (A B C D)
+   (native "libgmp.so" "__gmpz_fdiv_qr" NIL A B C D) )
+(de mpz_fdiv_q_ui (A B C)
+   (native "libgmp.so" "__gmpz_fdiv_q_ui" 'P A B C) )
+(de mpz_fdiv_r_ui (A B C)
+   (native "libgmp.so" "__gmpz_fdiv_r_ui" 'P A B C) )
+(de mpz_fdiv_qr_ui (A B C D)
+   (native "libgmp.so" "__gmpz_fdiv_qr_ui" 'P A B C D) )
+(de mpz_fdiv_ui (A B)
+   (native "libgmp.so" "__gmpz_fdiv_ui" 'P A B) )
+(de mpz_fdiv_q_2exp (A B C) # C is mp_bitcnt_t
+   (native "libgmp.so" "__gmpz_fdiv_q_2exp" NIL A B C) )
+(de mpz_fdiv_r_2exp (A B C) # C is mp_bitcnt_t
+   (native "libgmp.so" "__gmpz_fdiv_r_2exp" NIL A B C) )
+# TDIV
+(de mpz_tdiv_q (A B C)
+   (native "libgmp.so" "__gmpz_tdiv_q" NIL A B C) )
+(de mpz_tdiv_r (A B C)
+   (native "libgmp.so" "__gmpz_tdiv_r" NIL A B C) )
+(de mpz_tdiv_qr (A B C D)
+   (native "libgmp.so" "__gmpz_tdiv_qr" NIL A B C D) )
+(de mpz_tdiv_q_ui (A B C)
+   (native "libgmp.so" "__gmpz_tdiv_q_ui" 'P A B C) )
+(de mpz_tdiv_r_ui (A B C)
+   (native "libgmp.so" "__gmpz_tdiv_r_ui" 'P A B C) )
+(de mpz_tdiv_qr_ui (A B C D)
+   (native "libgmp.so" "__gmpz_tdiv_qr_ui" 'P A B C D) )
+(de mpz_tdiv_ui (A B)
+   (native "libgmp.so" "__gmpz_tdiv_ui" 'P A B) )
+(de mpz_tdiv_q_2exp (A B C) # C is mp_bitcnt_t
+   (native "libgmp.so" "__gmpz_tdiv_q_2exp" NIL A B C) )
+(de mpz_tdiv_r_2exp (A B C) # C is mp_bitcnt_t
+   (native "libgmp.so" "__gmpz_tdiv_r_2exp" NIL A B C) )
+# MOD
+(de mpz_mod (A B C)
+   (native "libgmp.so" "__gmpz_mod" NIL A B C) )
+# DIVEXACT
+(de mpz_divexact (A B C)
+   (native "libgmp.so" "__gmpz_divexact" NIL A B C) )
+(de mpz_divexact_ui (A B C)
+   (native "libgmp.so" "__gmpz_divexact_ui" NIL A B C) )
+# DIVISIBLE
+(de mpz_divisible_p (A B)
+   (native "libgmp.so" "__gmpz_divisible_p" 'I A B) )
+(de mpz_divisible_ui_p (A B)
+   (native "libgmp.so" "__gmpz_divisible_ui_p" 'I A B) )
+(de mpz_divisible_2exp_p (A B) # C is mp_bitcnt_t
+   (native "libgmp.so" "__gmpz_divisible_2exp_p" 'I A B) )
+# CONGRUENT
+(de mpz_congruent_p (A B C)
+   (native "libgmp.so" "__gmpz_congruent_p" 'I A B C) )
+(de mpz_congruent_ui_p (A B C)
+   (native "libgmp.so" "__gmpz_congruent_ui_p" 'I A B C) )
+(de mpz_congruent_2exp_p (A B C) # C is mp_bitcnt_t
+   (native "libgmp.so" "__gmpz_congruent_2exp_p" 'I A B C) )
+# 5.7 Exponentiation Functions
+(de mpz_powm (A B C D)
+   (native "libgmp.so" "__gmpz_powm" NIL A B C D) )
+(de mpz_powm_ui (A B C D)
+   (native "libgmp.so" "__gmpz_powm_ui" NIL A B C D) )
+(de mpz_powm_sec (A B C D)
+   (native "libgmp.so" "__gmpz_powm_sec" NIL A B C D) )
+(de mpz_pow_ui (A B C)
+   (native "libgmp.so" "__gmpz_pow_ui" NIL A B C) )
+(de mpz_ui_pow_ui (A B C)
+   (native "libgmp.so" "__gmpz_ui_pow_ui" NIL A B C) )
+# 5.8 Root Extraction Functions
+(de mpz_root (A B C)
+   (native "libgmp.so" "__gmpz_root" 'I A B C) )
+(de mpz_rootrem (A B C D)
+   (native "libgmp.so" "__gmpz_rootrem" NIL A B C D) )
+(de mpz_sqrt (A B)
+   (native "libgmp.so" "__gmpz_sqrt" NIL A B) )
+(de mpz_sqrtrem (A B C)
+   (native "libgmp.so" "__gmpz_sqrtrem" NIL A B C) )
+(de mpz_perfect_power_p (A)
+   (native "libgmp.so" "__gmpz_perfect_power_p" 'I A) )
+(de mpz_perfect_square_p (A)
+   (native "libgmp.so" "__gmpz_perfect_square_p" 'I A) )
+# 5.9 Number Theoretic Functions
+(de mpz_probab_prime_p (A B) # B is int
+   (native "libgmp.so" "__gmpz_probab_prime_p" 'I A B) )
+(de mpz_nextprime (A B)
+   (native "libgmp.so" "__gmpz_nextprime" NIL A B) )
+(de mpz_gcd (A B C)
+   (native "libgmp.so" "__gmpz_gcd" NIL A B C) )
+(de mpz_gcd_ui (A B C) # C is uint
+   (native "libgmp.so" "__gmpz_gcd_ui" 'P A B C) )
+(de mpz_gcdext (A B C D E)
+   (native "libgmp.so" "__gmpz_gcdext" NIL A B C D E) )
+(de mpz_lcm (A B C)
+   (native "libgmp.so" "__gmpz_lcm" NIL A B C) )
+(de mpz_lcm_ui (A B C) # C is ulong
+   (native "libgmp.so" "__gmpz_lcm_ui" NIL A B C) )
+# 5.10 Comparison Functions
+(de mpz_cmp (A B)
+   (native "libgmp.so" "__gmpz_cmp" 'I A B) )
+(de mpz_cmp_si (A B)
+   (native "libgmp.so" "__gmpz_cmp_si" 'I A B) )
+(de mpz_cmp_ui (A B)
+   (native "libgmp.so" "__gmpz_cmp_ui" 'I A B) )
+(de mpz_cmpabs (A B)
+   (native "libgmp.so" "__gmpz_cmpabs" 'I A B) )
+(de mpz_cmpabs_ui (A B) # B is ulong
+   (native "libgmp.so" "__gmpz_cmpabs_ui" 'I A B) )
+# 5.11 Logical and Bit Manipulation Functions
 
-(let (N (mpz_create)  Z (mpz_create))
-   (mpz_init N)
-   (mpz_init Z)
-   (mpz_set_str N "5")
-   (mpz_set_str Z "5")
 
-   (mpz_mul_2exp N N 5)
-   (mpz_neg N N)
-   (println (mpz_get_str N))
-   (mpz_abs N N)
-   (println (mpz_get_str N))
+
+
+
+
+
+
+(let (A (mpz_create)  B (mpz_create)  C (mpz_create)  D (mpz_create))
+   (mpz_init A)
+   (mpz_init B)
+   (mpz_init C)
+   (mpz_init D)
+   (mpz_set_str C "1234")
+   (mpz_set_str D "-5")
+
+   (mpz_cdiv_q B C D) # 247
+   (println (mpz_get_str B))
+   (mpz_cdiv_r B C D)
+   (println (mpz_get_str B))
+
+   # (mpz_cdiv_qr A B C D)
+   # (println (mpz_get_str A))
+   # (println (mpz_get_str B))
+#
+   # (mpz_fdiv_qr A B C D)
+   # (println (mpz_get_str A))
+   # (println (mpz_get_str B))
+
 )
 
 (msg 'ok)
