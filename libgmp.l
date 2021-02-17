@@ -1,3 +1,7 @@
+# TYPES:
+# mpz_t = 16
+# mp_bitcnt_t = unsigned long int
+
 # 5.1 Initialization Functions
 (de mpz_create NIL
    (%@ "malloc" 'P 16) )
@@ -58,18 +62,25 @@
    (native "libgmp.so" "__gmpz_submul" NIL A B C) )
 (de mpz_submul_ui (A B C)
    (native "libgmp.so" "__gmpz_submul_ui" NIL A B C) )
-(de mpz_mul_2exp (A B C) # A = A * B ** C
-   (native "libgmp.so" "__gmpz_addmul_ui" NIL A B C) )
-
+(de mpz_mul_2exp (A B C) # A = A * 2 ** C, C is mp_bitcnt_t
+   (native "libgmp.so" "__gmpz_mul_2exp" NIL A B C) )
+(de mpz_neg (A B)
+   (native "libgmp.so" "__gmpz_neg" NIL A B) )
+(de mpz_abs (A B)
+   (native "libgmp.so" "__gmpz_abs" NIL A B) )
+# 5.6 Division Functions
 
 (let (N (mpz_create)  Z (mpz_create))
    (mpz_init N)
    (mpz_init Z)
-   (mpz_set_str N "100")
-   (mpz_set_str Z "10")
-   (mpz_submul N N Z)
+   (mpz_set_str N "5")
+   (mpz_set_str Z "5")
+
+   (mpz_mul_2exp N N 5)
+   (mpz_neg N N)
    (println (mpz_get_str N))
-   (println (mpz_get_str Z))
+   (mpz_abs N N)
+   (println (mpz_get_str N))
 )
 
 (msg 'ok)
