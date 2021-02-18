@@ -7,6 +7,8 @@ PicoLisp bindings to [gmp](https://gmplib.org/) library for
 passed all tests.
 
 ##### BENCHMARKING:
+`Intel(R) Core(TM) i7-4790K CPU @ 4.00GHz`
+
 ```
 $ pil bench.l +
 + 100k loop:
