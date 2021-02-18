@@ -1,6 +1,7 @@
 # + - * /
 (load "libgmp.l")
 (setq A (mpz_create)  B (mpz_create))
+(gc 8)
 (mpz_init A)
 (mpz_init B)
 
@@ -31,7 +32,6 @@
    (do 100000
       (mpz_mul A A B) )
    (println (format (*/ (- (usec) U) 1000) 3) 'sec) )
-
 
 (msg 'ok)
 (bye)
