@@ -6,9 +6,7 @@ PicoLisp bindings to [gmp](https://gmplib.org/) library for
 [bigmath](https://git.envs.net/mpech/pil21/src/branch/master/src/big.l)
 passed all tests.
 
-BENCHMARKING:
-=============
-
+##### BENCHMARKING:
 ```
 $ pil bench.l +
 + 100k loop:
