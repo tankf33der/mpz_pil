@@ -25,4 +25,4 @@ $
 Happy coding.
 
 
-Attention: incorrect using `mpz_get_str` create memory leaks.
+Attention: incorrect using of `mpz_get_str` create memory leaks.
