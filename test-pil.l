@@ -16,8 +16,8 @@
    (mpz_init A)
    (mpz_init B)
    (mpz_init Z)
-   (do 1000000
-      (at (0 . 100000) (prin ".") (flush))
+   (do 1000
+      (at (0 . 100) (prin ".") (flush))
       (let
          (X1 (randL (rand Start End))
             X2 (randL (rand Start End))
