@@ -223,4 +223,8 @@
    (native "libgmp.so" "__gmpz_combit" NIL A B) )
 (de mpz_tstbit (A B) # B is mp_bitcnt_t
    (native "libgmp.so" "__gmpz_tstbit" 'I A B) )
-# 5.12 - 5.16 chapters skipped.
+# 5.15 Miscellaneous Functions
+(de mpz_sizeinbase(A B)
+   (default B 10)
+   (native "libgmp.so" "__gmpz_sizeinbase" 'N A B) )
+# 5.12 - 5.16 rest chapters are skipped.
