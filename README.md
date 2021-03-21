@@ -21,5 +21,8 @@ GMP: "0.462" sec
 ok
 $
 ```
+
 Happy coding.
 
+
+Attention: incorrect using `mpz_get_str` create memory leaks.
