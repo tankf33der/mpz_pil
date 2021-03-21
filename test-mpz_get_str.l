@@ -14,8 +14,8 @@
 (mpz_set_str B "100")
 (mpz_mul A A B)
 
-(do 30000000
-   (get_str A)
+(do 3
+   (println (get_str A))
 )
 
 
