@@ -25,4 +25,11 @@ $
 Happy coding.
 
 
-Attention: incorrect using of `mpz_get_str` create memory leaks.
+Attention: incorrect using of `mpz_get_str` create memory leaks. Example code for replacement, returns list of digits:
+```
+(de mpz_get_str (P Base)
+   (default Base 10)
+   (let (N (+ (mpz_sizeinbase P Base) 2)  Str)	# sign and zero chars
+      (native "libgmp.so" "__gmpz_get_str" NIL (list 'Str (cons N 'C N)) Base P)
+      Str ) )
+```
