@@ -1,11 +1,16 @@
 (gc 16)
 (load "libgmp.l")
+(de pil_cmp (X Y)
+   (cond
+      ((< X Y) -1)
+      ((> X Y) 1)
+      (T 0) ) )
 # main
 (let (A (mpz_create)  B (mpz_create)  Z (mpz_create))
    (mpz_init A)
    (mpz_init B)
    (mpz_init Z)
-   (do 1000
+   (do 10000
       (at (0 . 10) (prin ".") (flush))
       (let
          (Y1 (in "/dev/urandom" (rd 100000))
