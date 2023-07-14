@@ -1,4 +1,4 @@
-(gc 64)
+(gc 128)
 (seed (time))
 (load "libgmp.l")
 (de randL (N)
