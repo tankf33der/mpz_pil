@@ -36,9 +36,11 @@
    (native "libgmp.so" "__gmpz_get_ui" 'P A) )
 (de mpz_get_si (A)
    (native "libgmp.so" "__gmpz_get_si" 'N A) )
-(de mpz_get_str (P Base)   # XXX, leak warning
+(de mpz_get_str (P Base)
    (default Base 10)
-   (native "libgmp.so" "__gmpz_get_str" 'S 0 Base P) )
+   (let (N (+ (mpz_sizeinbase P Base) 2)  Str)
+      (native "libgmp.so" "__gmpz_get_str" NIL (list 'Str (cons N 'C N)) Base P)
+      (pack Str) ) )
 # 5.5 Arithmetic Functions
 (de mpz_add (A B C)
    (native "libgmp.so" "__gmpz_add" NIL A B C) )
