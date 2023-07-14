@@ -1,5 +1,11 @@
-(gc 32)
+(gc 64)
+(seed (time))
 (load "libgmp.l")
+(de randL (N)
+   (pack
+      (make
+         (do N
+            (link (rand 0 9)) ) ) ) )
 (de pil_cmp (X Y)
    (cond
       ((< X Y) -1)
@@ -11,12 +17,12 @@
    (mpz_init B)
    (mpz_init Z)
    (do 10000
-      (at (0 . 10) (prin ".") (flush))
+      (at (0 . 100) (prin ".") (flush))
       (let
-         (Y1 (in "/dev/urandom" (rd 100000))
-            Y2 (in "/dev/urandom" (rd 100000))
-            X1 (format Y1)
-            X2 (format Y2) )
+         (X1 (randL 1000000)
+            X2 (randL 1000000)
+            Y1 (format X1)
+            Y2 (format X2) )
          (mpz_set_str A X1)
          (mpz_set_str B X2)
 
