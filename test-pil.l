@@ -1,4 +1,4 @@
-(gc 16)
+(gc 32)
 (load "libgmp.l")
 (de pil_cmp (X Y)
    (cond
