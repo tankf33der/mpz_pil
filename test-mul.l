@@ -10,7 +10,7 @@
    (mpz_init B)
    (mpz_init Z)
    (do 10000000
-      (at (0 . 10000) (prin ".") (flush))
+      (at (0 . 100000) (prin ".") (flush))
       (let
          (Y1 (in "/dev/urandom" (rd 128))
             Y2 (in "/dev/urandom" (rd 128))
