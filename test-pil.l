@@ -1,5 +1,5 @@
 (gc 128)
-(seed (time))
+(seed (in "/dev/urandom" (rd 8)))
 (load "libgmp.l")
 (de randL (N)
    (pack
