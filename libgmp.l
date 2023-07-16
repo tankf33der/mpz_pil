@@ -3,8 +3,10 @@
 # mp_bitcnt_t = unsigned long int
 
 # 5.1 Initialization Functions
-(de mpz_create NIL
+(de mpz_malloc NIL
    (%@ "malloc" 'P 16) )
+(de mpz_free (P)
+   (%@ "free" NIL P) )
 (de mpz_init (P)
    (native "libgmp.so" "__gmpz_init" NIL P) )
 (de mpz_clear (P)

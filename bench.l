@@ -1,5 +1,5 @@
 (load "libgmp.l")
-(setq A (mpz_create)  B (mpz_create))
+(setq A (mpz_malloc)  B (mpz_malloc))
 (mpz_init A)
 (mpz_init B)
 
@@ -30,8 +30,8 @@
    (do 100000
       (mpz_mul A A B) )
    (println (format (*/ (- (usec) U) 1000) 3) 'sec) )
-(%@ "free" NIL A)
-(%@ "free" NIL B)
+(mpz_free A)
+(mpz_free B)
 
 (msg 'ok)
 (bye)

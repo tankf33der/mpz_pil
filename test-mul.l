@@ -5,7 +5,7 @@
       (make
          (do N
             (link (rand 0 9)) ) ) ) )
-(let (A (mpz_create)  B (mpz_create)  Z (mpz_create))
+(let (A (mpz_malloc)  B (mpz_malloc)  Z (mpz_malloc))
    (mpz_init A)
    (mpz_init B)
    (mpz_init Z)
@@ -24,9 +24,9 @@
    (mpz_clear A)
    (mpz_clear B)
    (mpz_clear Z)
-   (%@ "free" NIL A)
-   (%@ "free" NIL B)
-   (%@ "free" NIL Z) )
+   (mpz_free A)
+   (mpz_free B)
+   (mpz_free Z) )
 (prinl)
 (msg 'All-ok)
 (bye)

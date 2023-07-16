@@ -2,10 +2,11 @@
 
 
 # # 5.1 Initialization Functions
-# (de mpz_create NIL
+# (de mpz_malloc NIL
 # (de mpz_init (P)
 # (de mpz_clear (P)
-(let (A (mpz_create)  B (mpz_create))
+# (de mpz_free (P)
+(let (A (mpz_malloc)  B (mpz_malloc))
    (mpz_init A)
    (mpz_init B)
    (test (bool (num? A)) (bool (num? A)))
@@ -13,9 +14,8 @@
 
    (mpz_clear A)
    (mpz_clear B)
-   (%@ "free" NIL A)
-   (%@ "free" NIL B) )
-
+   (mpz_free A)
+   (mpz_free B) )
 
 # # 5.2 Assignment Functions
 # (de mpz_set (A B)
@@ -23,7 +23,7 @@
 # (de mpz_set_si (A B)
 # (de mpz_set_str (A B Base)
 # (de mpz_swap (A B)
-(let (A (mpz_create)  B (mpz_create)  C (mpz_create))
+(let (A (mpz_malloc)  B (mpz_malloc)  C (mpz_malloc))
    (mpz_init A)
    (mpz_init B)
    (mpz_init C)
@@ -47,17 +47,16 @@
    (mpz_clear A)
    (mpz_clear B)
    (mpz_clear C)
-   (%@ "free" NIL A)
-   (%@ "free" NIL B)
-   (%@ "free" NIL C) )
-
+   (mpz_free A)
+   (mpz_free B)
+   (mpz_free C) )
 
 # # 5.3 Combined Initialization and Assignment Functions
 # (de mpz_init_set (A B)
 # (de mpz_init_set_ui (A B)
 # (de mpz_init_set_si (A B)
 # (de mpz_init_set_str (A B Base)
-(let (A (mpz_create)  B (mpz_create)  C (mpz_create))
+(let (A (mpz_malloc)  B (mpz_malloc)  C (mpz_malloc))
    (mpz_init_set_ui A 1)
    (mpz_init_set B A)
    (test 1 (mpz_get_ui A))
@@ -77,16 +76,15 @@
    (mpz_clear A)
    (mpz_clear B)
    (mpz_clear C)
-   (%@ "free" NIL A)
-   (%@ "free" NIL B)
-   (%@ "free" NIL C) )
-
+   (mpz_free A)
+   (mpz_free B)
+   (mpz_free C) )
 
 # # 5.4 Conversion Functions
 # (de mpz_get_ui (A)
 # (de mpz_get_si (A)
 # (de mpz_get_str (P Base)
-(let (A (mpz_create)  B (mpz_create))
+(let (A (mpz_malloc)  B (mpz_malloc))
    (mpz_init_set_str A "-1234")
    (mpz_init_set_str B "1234")
    (test "-1234" (mpz_get_str A))
@@ -94,9 +92,8 @@
 
    (mpz_clear A)
    (mpz_clear B)
-   (%@ "free" NIL A)
-   (%@ "free" NIL B) )
-
+   (mpz_free A)
+   (mpz_free B) )
 
 # # 5.5 Arithmetic Functions
 # (de mpz_add (A B C)
@@ -113,7 +110,7 @@
 # (de mpz_mul_2exp (A B C)
 # (de mpz_neg (A B)
 # (de mpz_abs (A B)
-(let (A (mpz_create)  B (mpz_create)  C (mpz_create))
+(let (A (mpz_malloc)  B (mpz_malloc)  C (mpz_malloc))
    (mpz_init A)
    (mpz_init B)
    (mpz_init C)
@@ -163,10 +160,9 @@
    (mpz_clear A)
    (mpz_clear B)
    (mpz_clear C)
-   (%@ "free" NIL A)
-   (%@ "free" NIL B)
-   (%@ "free" NIL C) )
-
+   (mpz_free A)
+   (mpz_free B)
+   (mpz_free C) )
 
 # # 5.6 Division Functions
 # # CDIV
@@ -212,7 +208,7 @@
 # (de mpz_congruent_p (A B C)
 # (de mpz_congruent_ui_p (A B C)
 # (de mpz_congruent_2exp_p (A B C) # C is mp_bitcnt_t
-(let (A (mpz_create)  B (mpz_create)  C (mpz_create)  D (mpz_create))
+(let (A (mpz_malloc)  B (mpz_malloc)  C (mpz_malloc)  D (mpz_malloc))
    (mpz_init A)
    (mpz_init B)
    (mpz_init C)
@@ -344,11 +340,10 @@
    (mpz_clear B)
    (mpz_clear C)
    (mpz_clear D)
-   (%@ "free" NIL A)
-   (%@ "free" NIL B)
-   (%@ "free" NIL C)
-   (%@ "free" NIL D) )
-
+   (mpz_free A)
+   (mpz_free B)
+   (mpz_free C)
+   (mpz_free D) )
 
 # # 5.7 Exponentiation Functions
 # (de mpz_powm (A B C D)
@@ -356,7 +351,7 @@
 # (de mpz_powm_sec (A B C D)
 # (de mpz_pow_ui (A B C)
 # (de mpz_ui_pow_ui (A B C)
-(let (A (mpz_create)  B (mpz_create)  C (mpz_create)  D (mpz_create))
+(let (A (mpz_malloc)  B (mpz_malloc)  C (mpz_malloc)  D (mpz_malloc))
    (mpz_init A)
    (mpz_init B)
    (mpz_init C)
@@ -381,11 +376,10 @@
    (mpz_clear B)
    (mpz_clear C)
    (mpz_clear D)
-   (%@ "free" NIL A)
-   (%@ "free" NIL B)
-   (%@ "free" NIL C)
-   (%@ "free" NIL D) )
-
+   (mpz_free A)
+   (mpz_free B)
+   (mpz_free C)
+   (mpz_free D) )
 
 # # 5.8 Root Extraction Functions
 # (de mpz_root (A B C)
@@ -394,7 +388,7 @@
 # (de mpz_sqrtrem (A B C)
 # (de mpz_perfect_power_p (A)
 # (de mpz_perfect_square_p (A)
-(let (A (mpz_create)  B (mpz_create)  C (mpz_create)  D (mpz_create))
+(let (A (mpz_malloc)  B (mpz_malloc)  C (mpz_malloc)  D (mpz_malloc))
    (mpz_init A)
    (mpz_init B)
    (mpz_init C)
@@ -419,11 +413,10 @@
    (mpz_clear B)
    (mpz_clear C)
    (mpz_clear D)
-   (%@ "free" NIL A)
-   (%@ "free" NIL B)
-   (%@ "free" NIL C)
-   (%@ "free" NIL D) )
-
+   (mpz_free A)
+   (mpz_free B)
+   (mpz_free C)
+   (mpz_free D) )
 
 # # 5.9 Number Theoretic Functions
 # (de mpz_probab_prime_p (A B) # B is int
@@ -433,7 +426,7 @@
 # (de mpz_gcdext (A B C D E)
 # (de mpz_lcm (A B C)
 # (de mpz_lcm_ui (A B C) # C is ulong
-(let (A (mpz_create)  B (mpz_create)  C (mpz_create)  D (mpz_create))
+(let (A (mpz_malloc)  B (mpz_malloc)  C (mpz_malloc)  D (mpz_malloc))
    (mpz_init A)
    (mpz_init B)
    (mpz_init C)
@@ -458,11 +451,10 @@
    (mpz_clear B)
    (mpz_clear C)
    (mpz_clear D)
-   (%@ "free" NIL A)
-   (%@ "free" NIL B)
-   (%@ "free" NIL C)
-   (%@ "free" NIL D) )
-
+   (mpz_free A)
+   (mpz_free B)
+   (mpz_free C)
+   (mpz_free D) )
 
 # # 5.10 Comparison Functions
 # (de mpz_cmp (A B)
@@ -470,7 +462,7 @@
 # (de mpz_cmp_ui (A B)
 # (de mpz_cmpabs (A B)
 # (de mpz_cmpabs_ui (A B) # B is ulong
-(let (A (mpz_create)  B (mpz_create)  C (mpz_create)  D (mpz_create))
+(let (A (mpz_malloc)  B (mpz_malloc)  C (mpz_malloc)  D (mpz_malloc))
    (mpz_init A)
    (mpz_init B)
    (mpz_init C)
@@ -496,11 +488,10 @@
    (mpz_clear B)
    (mpz_clear C)
    (mpz_clear D)
-   (%@ "free" NIL A)
-   (%@ "free" NIL B)
-   (%@ "free" NIL C)
-   (%@ "free" NIL D) )
-
+   (mpz_free A)
+   (mpz_free B)
+   (mpz_free C)
+   (mpz_free D) )
 
 # # 5.11 Logical and Bit Manipulation Functions
 # (de mpz_and (A B C)
@@ -515,7 +506,7 @@
 # (de mpz_clrbit (A B) # B is mp_bitcnt_t
 # (de mpz_combit (A B) # B is mp_bitcnt_t
 # (de mpz_tstbit (A B) # B is mp_bitcnt_t
-(let (A (mpz_create)  B (mpz_create)  C (mpz_create)  D (mpz_create))
+(let (A (mpz_malloc)  B (mpz_malloc)  C (mpz_malloc)  D (mpz_malloc))
    (mpz_init A)
    (mpz_init B)
    (mpz_init C)
@@ -535,10 +526,10 @@
    (mpz_clear B)
    (mpz_clear C)
    (mpz_clear D)
-   (%@ "free" NIL A)
-   (%@ "free" NIL B)
-   (%@ "free" NIL C)
-   (%@ "free" NIL D) )
+   (mpz_free A)
+   (mpz_free B)
+   (mpz_free C)
+   (mpz_free D) )
 
 (msg 'All-ok)
 (bye)
