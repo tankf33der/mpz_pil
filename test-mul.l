@@ -21,9 +21,6 @@
 
          (mpz_mul Z A B)
          (test (* Y1 Y2) (format (mpz_get_str Z))) ) )
-   (mpz_clear A)
-   (mpz_clear B)
-   (mpz_clear Z)
    (mpz_free A)
    (mpz_free B)
    (mpz_free Z) )
