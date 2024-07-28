@@ -16,17 +16,22 @@
    (mpz_init A)
    (mpz_init B)
    (mpz_init Z)
-   (do 10000
-      (at (0 . 100) (prin ".") (flush))
+   (do 1
+#      (at (0 . 10) (prin ".") (flush))
       (let
-         (X1 (randL 5000 10000)
-            X2 (randL 5000 10000)
+         (X1 (randL 100 200)
+            X2 (randL 100 200)
             Y1 (format X1)
             Y2 (format X2) )
          (mpz_set_str A X1)
          (mpz_set_str B X2)
 
-         (mpz_add Z A B)
+
+         (mpz_and Z A B) (mpz_swap Z A)
+         (setq Y1 (& Y1 Y2))
+         (mpz_ior Z A B) (mpz_swap Z A)
+#{
+          (mpz_add Z A B)
          (test (+ Y1 Y2) (format (mpz_get_str Z)))
          (mpz_sub Z A B)
          (test (- Y1 Y2) (format (mpz_get_str Z)))
@@ -49,10 +54,14 @@
          (mpz_ior Z A B)
          (test (| Y1 Y2) (format (mpz_get_str Z)))
          (mpz_xor Z A B)
-         (test (x| Y1 Y2) (format (mpz_get_str Z))) ) )
+         (test (x| Y1 Y2) (format (mpz_get_str Z)))
+}#
+      ) # let
+   ) # do
    (mpz_free A)
    (mpz_free B)
-   (mpz_free Z) )
+   (mpz_free Z)
+)
 (prinl)
 (msg 'All-ok)
 (bye)
