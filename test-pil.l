@@ -5,7 +5,7 @@
    (pack
       (make
          (do N
-            (link (rand 0 9)) ) ) ) )
+            (link (rand 1 9)) ) ) ) )
 (de pil_cmp (X Y)
    (cond
       ((< X Y) -1)
@@ -19,8 +19,8 @@
    (do 10000
       (at (0 . 100) (prin ".") (flush))
       (let
-         (X1 (randL (rand 2000 4000))
-            X2 (randL (rand 2000 4000))
+         (X1 (randL (rand 50000 100000))
+            X2 (randL (rand 50000 100000))
             Y1 (format X1)
             Y2 (format X2) )
          (mpz_set_str A X1)
@@ -50,7 +50,6 @@
          (test (| Y1 Y2) (format (mpz_get_str Z)))
          (mpz_xor Z A B)
          (test (x| Y1 Y2) (format (mpz_get_str Z)))
-}#
       ) # let
    ) # do
    (mpz_free A)
