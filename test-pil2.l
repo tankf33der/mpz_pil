@@ -12,10 +12,9 @@
    (mpz_init Z)
    (out "result.dat"
       (do 10
-         (at (0 . 1) (prin ".") (flush))
          (let
-            (X1 (randL (rand 500000 1000000))
-               X2 (randL (rand 500000 1000000)) )
+            (X1 (randL (rand 5000000 10000000))
+               X2 (randL (rand 5000000 10000000)) )
             (mpz_set_str A X1)
             (mpz_set_str B X2)
 
