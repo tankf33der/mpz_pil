@@ -1,3 +1,4 @@
+(gc 4096)
 (seed (in "/dev/urandom" (rd 8)))
 (load "libgmp.l")
 (de randL (N)
@@ -13,8 +14,8 @@
    (out "result.dat"
       (do 10
          (let
-            (X1 (randL (rand 5000000 10000000))
-               X2 (randL (rand 5000000 10000000)) )
+            (X1 (randL (rand 50000000 100000000))
+               X2 (randL (rand 50000000 100000000)) )
             (mpz_set_str A X1)
             (mpz_set_str B X2)
 
