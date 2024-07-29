@@ -1,5 +1,6 @@
 (load "libgmp.l")
 
+(scl 16)
 
 # # 5.1 Initialization Functions
 # (de mpz_malloc NIL
@@ -582,6 +583,7 @@
    (mpf_set_str B "1.34")
    (mpf_add C A B)
    (test "1459999999999999999999999999999999999998" (mpf_get_str C))
+   (test "146" (mpf_get_str C 6))
 
    (mpf_sub C A B)
    (test "-122" (mpf_get_str C))
@@ -595,12 +597,9 @@
    (mpf_sqrt C A)
    (test "3464101615137754587054892683011744733886" (mpf_get_str C))
 
-   
-   
    (mpf_free A)
    (mpf_free B)
    (mpf_free C) )
-
 
 
 (msg 'All-ok)
