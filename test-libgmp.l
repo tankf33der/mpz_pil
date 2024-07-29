@@ -553,15 +553,53 @@
    (mpf_clear B)
    (mpf_free A)
    (mpf_free B) )
+# 7.2 Assignment Functions
+(let (A (mpf_malloc)  B (mpf_malloc))
+   (mpf_init A)
+   (mpf_init B)
+   (test -1 (mpf_set_str A "0.a123498739837938797339783e"))
+   (test 0  (mpf_set_str A "0.11234987398379387973397831"))
 
+   (mpf_swap A B)
+   (mpf_free A) )
+# 7.3 Combined Initialization and Assignment Functions
+# 7.4 Conversion Functions
+(let (A (mpf_malloc))
+   (mpf_init A)
 
+   (test 0 (mpf_set_str A "123.12345"))
+   (test "1231" (mpf_get_str A 4))
+   (test "12312345" (mpf_get_str A))
 
+   (mpf_free A) )
+# 7.5 Arithmetic Functions
+(let (A (mpf_malloc)  B (mpf_malloc)  C (mpf_malloc))
+   (mpf_init A)
+   (mpf_init B)
+   (mpf_init C)
 
+   (mpf_set_str A "0.12")
+   (mpf_set_str B "1.34")
+   (mpf_add C A B)
+   (test "1459999999999999999999999999999999999998" (mpf_get_str C))
 
+   (mpf_sub C A B)
+   (test "-122" (mpf_get_str C))
 
+   (mpf_mul C A B)
+   (test "1608" (mpf_get_str C))
 
+   (mpf_div C A B)
+   (test "8955223880597014925373134328358208955224" (mpf_get_str C))
 
+   (mpf_sqrt C A)
+   (test "3464101615137754587054892683011744733886" (mpf_get_str C))
 
+   
+   
+   (mpf_free A)
+   (mpf_free B)
+   (mpf_free C) )
 
 
 

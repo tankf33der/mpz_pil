@@ -259,4 +259,28 @@
 (de mpf_set_prec (A B)
    (native "libgmp.so.10" "__gmpf_set_prec" NIL A B) )
 # 7.2 Assignment Functions
+(de mpf_set_str (A B Base)
+   (default Base 10)
+   (native "libgmp.so.10" "__gmpf_set_str" 'I A B Base) )
+(de mpf_swap (A B)
+   (native "libgmp.so.10" "__gmpf_swap" NIL A B) )
+# 7.3 Combined Initialization and Assignment Functions
+# 7.4 Conversion Functions
+(de mpf_get_str (P Digits Base)
+   (default Digits 0)
+   (default Base 10)
+   (let (N (+ (mpf_get_prec P) 2)  Str)
+      (native "libgmp.so.10" "__gmpf_get_str" NIL (list 'Str (cons N 'C N)) 'I Base Digits P)
+      (pack Str) ) )
+# 7.5 Arithmetic Functions
+(de mpf_add (A B C)
+   (native "libgmp.so.10" "__gmpf_add" NIL A B C) )
+(de mpf_sub (A B C)
+   (native "libgmp.so.10" "__gmpf_sub" NIL A B C) )
+(de mpf_mul (A B C)
+   (native "libgmp.so.10" "__gmpf_mul" NIL A B C) )
+(de mpf_div (A B C)
+   (native "libgmp.so.10" "__gmpf_div" NIL A B C) )
+(de mpf_sqrt (A B)
+   (native "libgmp.so.10" "__gmpf_sqrt" NIL A B) )
 
