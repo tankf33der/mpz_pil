@@ -531,5 +531,27 @@
    (mpz_free C)
    (mpz_free D) )
 
+#################################################################################
+#
+# Floating-point Functions
+#
+#################################################################################
+# 7.1 Initialization Functions
+(let (A (mpf_malloc))
+   (mpf_set_default_prec 128)
+   (test 128 (mpf_get_default_prec))
+   (mpf_free A) )
+
+
+
+
+
+
+
+
+
+
+
+
 (msg 'All-ok)
 (bye)

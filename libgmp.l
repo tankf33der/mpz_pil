@@ -238,8 +238,15 @@
 # Floating-point Functions
 #
 #################################################################################
+# TYPES:
+# mpz_t = 24
+# mp_bitcnt_t = unsigned long int
 # 7.1 Initialization Functions
 (de mpf_malloc NIL
    (%@ "malloc" 'P 24) )
 (de mpf_free (P)
    (%@ "free" NIL P) )
+(de mpf_set_default_prec (A)
+   (native "libgmp.so.10" "__gmpf_set_default_prec" NIL A) )
+(de mpf_get_default_prec ()
+   (native "libgmp.so.10" "__gmpf_get_default_prec" 'N) )
