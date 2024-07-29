@@ -283,4 +283,9 @@
    (native "libgmp.so.10" "__gmpf_div" NIL A B C) )
 (de mpf_sqrt (A B)
    (native "libgmp.so.10" "__gmpf_sqrt" NIL A B) )
-
+(de mpf_pow_ui (A B C)
+   (native "libgmp.so.10" "__gmpf_pow_ui" NIL A B C) )
+(de mpf_neg (A B)
+   (native "libgmp.so.10" "__gmpf_neg" NIL A B) )
+(de mpf_abs (A B)
+   (native "libgmp.so.10" "__gmpf_abs" NIL A B) )

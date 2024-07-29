@@ -1,4 +1,5 @@
 (load "libgmp.l")
+(load "@lib/math.l")
 
 (scl 16)
 
@@ -546,6 +547,7 @@
    (mpf_init B)
 
    (test 128 (mpf_get_prec B))
+   (mpf_set_default_prec 64)   # default
 
    (mpf_set_prec B 1024)
    (test 1024 (mpf_get_prec B))
@@ -575,6 +577,8 @@
    (mpf_free A) )
 # 7.5 Arithmetic Functions
 (let (A (mpf_malloc)  B (mpf_malloc)  C (mpf_malloc))
+   (mpf_set_default_prec 64)
+
    (mpf_init A)
    (mpf_init B)
    (mpf_init C)
@@ -582,20 +586,29 @@
    (mpf_set_str A "0.12")
    (mpf_set_str B "1.34")
    (mpf_add C A B)
-   (test "1459999999999999999999999999999999999998" (mpf_get_str C))
+   (test "145999999999999999993" (mpf_get_str C))
    (test "146" (mpf_get_str C 6))
 
    (mpf_sub C A B)
    (test "-122" (mpf_get_str C))
 
    (mpf_mul C A B)
-   (test "1608" (mpf_get_str C))
+   (test "160799999999999999997" (mpf_get_str C))
 
    (mpf_div C A B)
-   (test "8955223880597014925373134328358208955224" (mpf_get_str C))
+   (test "895522388059701492537" (mpf_get_str C))
 
    (mpf_sqrt C A)
-   (test "3464101615137754587054892683011744733886" (mpf_get_str C))
+   (test "346410161513775458705" (mpf_get_str C))
+
+   (mpf_pow_ui C A 12)
+   (test "8916100448256" (mpf_get_str C))
+
+   (mpf_neg C A)
+   (test "-12" (mpf_get_str C))
+
+   (mpf_abs C C)
+   (test "12" (mpf_get_str C))
 
    (mpf_free A)
    (mpf_free B)
