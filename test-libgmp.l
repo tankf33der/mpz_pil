@@ -537,10 +537,22 @@
 #
 #################################################################################
 # 7.1 Initialization Functions
-(let (A (mpf_malloc))
+(let (A (mpf_malloc) B (mpf_malloc))
+   (mpf_init A)
+
    (mpf_set_default_prec 128)
    (test 128 (mpf_get_default_prec))
-   (mpf_free A) )
+   (mpf_init B)
+
+   (test 128 (mpf_get_prec B))
+
+   (mpf_set_prec B 1024)
+   (test 1024 (mpf_get_prec B))
+
+   (mpf_clear A)
+   (mpf_clear B)
+   (mpf_free A)
+   (mpf_free B) )
 
 
 

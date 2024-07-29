@@ -250,3 +250,13 @@
    (native "libgmp.so.10" "__gmpf_set_default_prec" NIL A) )
 (de mpf_get_default_prec ()
    (native "libgmp.so.10" "__gmpf_get_default_prec" 'N) )
+(de mpf_init (A)
+   (native "libgmp.so.10" "__gmpf_init" NIL A) )
+(de mpf_clear (A)
+   (native "libgmp.so.10" "__gmpf_clear" NIL A) )
+(de mpf_get_prec (A)
+   (native "libgmp.so.10" "__gmpf_get_prec" 'N A) )
+(de mpf_set_prec (A B)
+   (native "libgmp.so.10" "__gmpf_set_prec" NIL A B) )
+# 7.2 Assignment Functions
+
