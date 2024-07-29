@@ -232,3 +232,14 @@
    (default B 10)
    (native "libgmp.so.10" "__gmpz_sizeinbase" 'N A B) )
 # 5.12 - 5.16 rest chapters are skipped.
+
+#################################################################################
+#
+# Floating-point Functions
+#
+#################################################################################
+# 7.1 Initialization Functions
+(de mpf_malloc NIL
+   (%@ "malloc" 'P 24) )
+(de mpf_free (P)
+   (%@ "free" NIL P) )
