@@ -19,8 +19,8 @@
    (do 10000
       (at (0 . 100) (prin ".") (flush))
       (let
-         (X1 (randL (rand 20 40))
-            X2 (randL (rand 20 40))
+         (X1 (randL (rand 2000 4000))
+            X2 (randL (rand 2000 4000))
             Y1 (format X1)
             Y2 (format X2) )
          (mpz_set_str A X1)
