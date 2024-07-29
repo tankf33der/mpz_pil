@@ -19,17 +19,22 @@
    (do 1
 #      (at (0 . 10) (prin ".") (flush))
       (let
-         (X1 (randL 100 200)
-            X2 (randL 100 200)
+         (X1 (randL (rand 2 4))
+            X2 (randL (rand 2 4))
             Y1 (format X1)
             Y2 (format X2) )
          (mpz_set_str A X1)
          (mpz_set_str B X2)
 
-
-         (mpz_and Z A B) (mpz_swap Z A)
+         (mpz_and A A B)
+         (println 'before Y1 Y2)
          (setq Y1 (& Y1 Y2))
-         (mpz_ior Z A B) (mpz_swap Z A)
+         #(mpz_ior A A B)
+         #(println 'before Y1 Y2)
+         #(setq Y1 (| Y1 Y2))
+
+         (println 'after Y1 Y2)
+         (test Y1 (format (mpz_get_str A)))
 #{
           (mpz_add Z A B)
          (test (+ Y1 Y2) (format (mpz_get_str Z)))
@@ -49,11 +54,11 @@
                (T (quit "Comparison failed")) ) )
          (mpz_sqrt Z A)
          (test (sqrt Y1) (format (mpz_get_str Z)))
-         (mpz_and Z A B)
+         + (mpz_and Z A B)
          (test (& Y1 Y2) (format (mpz_get_str Z)))
          (mpz_ior Z A B)
          (test (| Y1 Y2) (format (mpz_get_str Z)))
-         (mpz_xor Z A B)
+         + (mpz_xor Z A B)
          (test (x| Y1 Y2) (format (mpz_get_str Z)))
 }#
       ) # let
