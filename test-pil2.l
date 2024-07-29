@@ -1,4 +1,4 @@
-(gc 4096)
+(gc 8192)
 (seed (in "/dev/urandom" (rd 8)))
 (load "libgmp.l")
 (de randL (N)
